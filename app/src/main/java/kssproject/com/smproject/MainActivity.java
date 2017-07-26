@@ -62,18 +62,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    void initView(){
-        button = (Button)findViewById(R.id.button);
+    void initView() {
+        button = (Button) findViewById(R.id.button2);
         chartTop = (LineChartView) findViewById(R.id.chart_top);
 
-        buttonburn = (Button)findViewById(R.id.buttonBurn);
+        buttonburn = (Button) findViewById(R.id.buttonBurn);
 
         final String key;
-        if(SharedPreferences.getSettingItem(getApplicationContext(),"UserKey") == null){
-            SharedPreferences.saveSettingItem(getApplicationContext(),"UserKey",databaseReference.push().getKey());
-            key = SharedPreferences.getSettingItem(getApplicationContext(),"UserKey");
+        if (SharedPreferences.getSettingItem(getApplicationContext(), "UserKey") == null) {
+            SharedPreferences.saveSettingItem(getApplicationContext(), "UserKey", databaseReference.push().getKey());
+            key = SharedPreferences.getSettingItem(getApplicationContext(), "UserKey");
         } else {
-            key = SharedPreferences.getSettingItem(getApplicationContext(),"UserKey");
+            key = SharedPreferences.getSettingItem(getApplicationContext(), "UserKey");
         }
 
 
@@ -117,22 +117,31 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentdata = new Intent(MainActivity.this, DataActivity.class);
+                startActivity(intentdata);
+            }
+        });
+
 
     }
+
     //// TODO: 2017-07-25  graph
     private void generateInitialLineData() {
         StoreData storeData = StoreData.getInstance();
         int numValues = 0;
-        if(storeData.getDate().size() > 7){
-            numValues = storeData.getDate().size()-7;
-        }else{
-           numValues = storeData.getDate().size();
+        if (storeData.getDate().size() > 7) {
+            numValues = storeData.getDate().size() - 7;
+        } else {
+            numValues = storeData.getDate().size();
         }
 
         List<AxisValue> axisValues = new ArrayList<AxisValue>();
         List<PointValue> values = new ArrayList<PointValue>();
-        for(int i = 0, j=numValues ; j < storeData.getDate().size(); ++i,j++){
-            values.add(new PointValue(i,storeData.getCalorie().get(j)));
+        for (int i = 0, j = numValues; j < storeData.getDate().size(); ++i, j++) {
+            values.add(new PointValue(i, storeData.getCalorie().get(j)));
             axisValues.add(new AxisValue(i).setLabel(storeData.getDate().get(j).substring(5)));
         }
 
@@ -159,9 +168,11 @@ public class MainActivity extends AppCompatActivity {
         chartTop.setLineChartData(lineData);
 
         Viewport testv = chartTop.getMaximumViewport();
-        testv.set(testv.left,testv.top,testv.right+1,0);
-        Viewport v = new Viewport(0,3000,7,0);
+        testv.set(testv.left, testv.top, testv.right + 1, 0);
+        Viewport v = new Viewport(0, 3000, 7, 0);
 
+        testv.top = testv.top+400;
+        testv.bottom = testv.bottom-190;
 //        v.bottom=0;
 //        v.top=3000;
 //        v.left=0;
