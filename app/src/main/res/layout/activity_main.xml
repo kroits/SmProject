@@ -65,7 +65,7 @@
     </GridLayout>
     <lecho.lib.hellocharts.view.LineChartView
         android:id="@+id/chart_top"
-        android:layout_width="307dp"
+        android:layout_width="330dp"
         android:layout_height="277dp"
         android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent"

@@ -33,7 +33,7 @@ public class StoreDb {
     public  void DataSave(String key , double weight, int calorie ) {
 
         Date date = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         for (int i = 0; i < 5; i++) {
             date.setDate(date.getDate() - 1);
             strDate = dateFormat.format(date);

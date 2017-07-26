@@ -25,6 +25,8 @@ public class ProfileActivity extends AppCompatActivity{
     private String sex;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        final Intent postIntent = getIntent();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.enroll_layout);
         nextButton = (Button)findViewById(R.id.nextButton);
@@ -69,7 +71,8 @@ public class ProfileActivity extends AppCompatActivity{
                 saveSettingItem(getApplicationContext(),"Sex",sex);
 
                 Intent intent1 = new Intent(ProfileActivity.this,MainActivity.class);
-                startActivity(intent1);
+
+                startActivity(postIntent);
             }
         });
 

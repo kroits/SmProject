@@ -19,24 +19,24 @@ public class StartActivity extends AppCompatActivity {
     private static FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private static DatabaseReference databaseReference = firebaseDatabase.getReference();
     private DatabaseReference userRef = null;
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start_layout);
 
-        String key =  SharedPreferences.getSettingItem(getApplicationContext(),"UserKey");
         date = new Date();
         strDate = dateFormat.format(date);
-        StoreDb.getInstatce().setDate(strDate);
 
-        for(int i = 0 ; i < 3 ; i ++ ) {
-            SelectDb.getInstance().SelectData(key, strDate);
-        }
+
 
 
         if(SharedPreferences.getSettingItem(getApplicationContext(),"UserKey") != null){
+            String key =  SharedPreferences.getSettingItem(getApplicationContext(),"UserKey");
+            StoreDb.getInstatce().setDate(strDate);
+            SelectDb.getInstance().SelectData(key);
+
             Intent mainIntent = new Intent(this,MainActivity.class);
             startActivity(mainIntent);
         }
