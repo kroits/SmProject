@@ -35,7 +35,7 @@ public class StartActivity extends AppCompatActivity {
         if(SharedPreferences.getSettingItem(getApplicationContext(),"UserKey") != null){
             String key =  SharedPreferences.getSettingItem(getApplicationContext(),"UserKey");
             StoreDb.getInstatce().setDate(strDate);
-            SelectDb.getInstance().SelectData(key);
+
 
             Intent mainIntent = new Intent(this,MainActivity.class);
             startActivity(mainIntent);

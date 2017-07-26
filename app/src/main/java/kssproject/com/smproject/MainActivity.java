@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        SelectDb.getInstance().SelectData(SharedPreferences.getSettingItem(getApplicationContext(),"UserKey"));
 
 //        SharedPreferences.removeSettingAll(getApplicationContext(),"Name");
         initView();
