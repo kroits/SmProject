@@ -13,7 +13,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import kssproject.com.smproject.FireBase.SelectDb;
@@ -38,24 +37,50 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference userRef = null;
 
 
+
     //// TODO: 2017-07-25  graph
 
-    private Date date = new Date();
     private LineChartView chartTop;
     private LineChartData lineData;
+    private String key;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SelectDb.getInstance().SelectData(SharedPreferences.getSettingItem(getApplicationContext(),"UserKey"));
+
+        //Profile check
+
+        if(SharedPreferences.getSettingItem(getApplicationContext(),"Name") ==null){
+            Intent intentProfile = new Intent(MainActivity.this, ProfileActivity.class);
+            startActivity(intentProfile);
+        }
+
+        // UserKey check
+        if (SharedPreferences.getSettingItem(getApplicationContext(), "UserKey") == null) {
+            SharedPreferences.saveSettingItem(getApplicationContext(), "UserKey", databaseReference.push().getKey());
+        }
+        this.key = SharedPreferences.getSettingItem(getApplicationContext(),"UserKey");
+
+        if(StoreData.getInstance().getDate().size() == 0) {
+            Intent intentWait = new Intent(MainActivity.this, WaitActivity.class);
+            intentWait.putExtra("UserKey", key);
+            startActivity(intentWait);
+            finish();
+        }
+
+        // read data from Db by UserKey
+
+//        SelectDb.getInstance().SelectData(SharedPreferences.getSettingItem(getApplicationContext(),"UserKey"));
+
+
 
 //        SharedPreferences.removeSettingAll(getApplicationContext(),"Name");
         initView();
-        generateInitialLineData();
+//        generateInitialLineData();
 
-        java.util.Locale.getDefault();
+//        java.util.Locale.getDefault();
 //        StoreDb.getInstatce().DataSave(SharedPreferences.getSettingItem(getApplicationContext(),"UserKey"),54.4,0);
 
     }
@@ -63,15 +88,7 @@ public class MainActivity extends AppCompatActivity {
     void initView() {
         button = (Button) findViewById(R.id.button2);
         chartTop = (LineChartView) findViewById(R.id.chart_top);
-
-        final String key;
-        if (SharedPreferences.getSettingItem(getApplicationContext(), "UserKey") == null) {
-            SharedPreferences.saveSettingItem(getApplicationContext(), "UserKey", databaseReference.push().getKey());
-            key = SharedPreferences.getSettingItem(getApplicationContext(), "UserKey");
-        } else {
-            key = SharedPreferences.getSettingItem(getApplicationContext(), "UserKey");
-        }
-
+        final String key = SharedPreferences.getSettingItem(getApplicationContext(),"UserKey");
 
         databaseReference.child(key).child("information").addChildEventListener(new ChildEventListener() {
             @Override

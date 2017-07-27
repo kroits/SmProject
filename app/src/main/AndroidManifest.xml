@@ -28,19 +28,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <service
-            android:name=".Exercise.BluetoothLeService"
-            android:enabled="true" />
-
         <activity
             android:name=".ProfileActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".Exercise.ExersiceActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".StartActivity"></activity>
-        <activity android:name=".DataActivity"></activity>
+        <activity android:name=".DataActivity" />
+        <activity android:name=".WaitActivity"></activity>
     </application>
 
 </manifest>
