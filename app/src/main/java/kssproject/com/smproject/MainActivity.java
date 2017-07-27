@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import kssproject.com.smproject.Exercise.ExersiceActivity;
 import kssproject.com.smproject.FireBase.SelectDb;
 import kssproject.com.smproject.MidStore.StoreData;
 import lecho.lib.hellocharts.model.Axis;
@@ -33,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
 
     private Button button;
     private Button button2;
-    private Button buttonburn;
     private String TAG = "kss";
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
@@ -65,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
     void initView() {
         button = (Button) findViewById(R.id.button2);
         chartTop = (LineChartView) findViewById(R.id.chart_top);
-
-        buttonburn = (Button) findViewById(R.id.buttonBurn);
 
         final String key;
         if (SharedPreferences.getSettingItem(getApplicationContext(), "UserKey") == null) {
@@ -108,15 +104,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        buttonburn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intentburn = new Intent(MainActivity.this, ExersiceActivity.class);
-                startActivity(intentburn);
-            }
-        });
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,12 +132,6 @@ public class MainActivity extends AppCompatActivity {
             axisValues.add(new AxisValue(i).setLabel(storeData.getDate().get(j).substring(5)));
         }
 
-//        Axis calAxis = new Axis(axisValues).setName("Calories [kcal]").setHasLines(true).setMaxLabelChars(5);
-//        for(int i = 0; i < 7; ++i){
-//            values.add(new PointValue(i,0));
-//
-//        }
-
         Line line = new Line(values);
         line.setColor(ChartUtils.COLOR_ORANGE).setCubic(true);
 
@@ -173,14 +154,9 @@ public class MainActivity extends AppCompatActivity {
 
         testv.top = testv.top+400;
         testv.bottom = testv.bottom-190;
-//        v.bottom=0;
-//        v.top=3000;
-//        v.left=0;
-//        v.right=7;
+
         chartTop.setMaximumViewport(testv);
         chartTop.setCurrentViewport(testv);
-//        chartTop.setScrollEnabled(false);
-//        chartTop.setZoomEnabled(false);
-//        chartTop.refreshDrawableState();
+
     }
 }

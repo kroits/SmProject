@@ -54,14 +54,6 @@ public class DataActivity extends AppCompatActivity {
         });
 
 
-//        RadioButton caloriebutton;
-//        RadioButton weightbutton;
-//
-//
-//        caloriebutton = (RadioButton)findViewById(R.id.caloriebutton);
-//        weightbutton = (RadioButton)findViewById(R.id.weightbutton);
-
-
 
     }
 
@@ -75,12 +67,6 @@ public class DataActivity extends AppCompatActivity {
             values.add(new PointValue(i,storeData.getWeight().get(i).floatValue()));
             axisValues.add(new AxisValue(i).setLabel(storeData.getDate().get(i).substring(5)));
         }
-
-//        Axis calAxis = new Axis(axisValues).setName("Calories [kcal]").setHasLines(true).setMaxLabelChars(5);
-//        for(int i = 0; i < 7; ++i){
-//            values.add(new PointValue(i,0));
-//
-//        }
 
         Line line = new Line(values);
         line.setColor(ChartUtils.COLOR_ORANGE).setCubic(true);
@@ -107,23 +93,18 @@ public class DataActivity extends AppCompatActivity {
             v1.left = startleft;
         }
 
-//        v1.left=startleft;
-//        v1.top=70;
+
 
         v1.right=v1.right+1;
-//            v.left=(float)startleft;
 
 
 
-//        v.bottom=0;
-//        v.top=3000;
-//        v.left=0;
-//        v.right=7;
+
         chart.setMaximumViewport(testv1);
         chart.setCurrentViewport(v1);
         chart.setScrollEnabled(true);
         chart.setZoomEnabled(false);
-//        chart.refreshDrawableState();
+
     }
 
     private void generateCalorieGraph() {
@@ -134,12 +115,6 @@ public class DataActivity extends AppCompatActivity {
             values.add(new PointValue(i,storeData.getCalorie().get(i)));
             axisValues.add(new AxisValue(i).setLabel(storeData.getDate().get(i).substring(5)));
         }
-
-//        Axis calAxis = new Axis(axisValues).setName("Calories [kcal]").setHasLines(true).setMaxLabelChars(5);
-//        for(int i = 0; i < 7; ++i){
-//            values.add(new PointValue(i,0));
-//
-//        }
 
         Line line = new Line(values);
         line.setColor(ChartUtils.COLOR_BLUE).setCubic(true);
@@ -162,26 +137,15 @@ public class DataActivity extends AppCompatActivity {
         testv.top = testv.top+550;
         testv.bottom = testv.bottom - 190;
 
-//        testv.set(testv.left,testv.top,testv.right+1,testv.bottom);
         testv.right = testv.right+1;
         Viewport v = new Viewport(chart.getMaximumViewport());
         if(startleft > 0) {
             v.left = startleft;
         }
-
-//        v.left=startleft;
-//        v.bottom=testv.bottom;
-
-
-//        v.bottom=0;
-//        v.top=3000;
-//        v.left=0;
-//        v.right=7;
         chart.setMaximumViewport(testv);
         chart.setCurrentViewport(v);
         chart.setScrollEnabled(true);
         chart.setZoomEnabled(false);
-//        chart.refreshDrawableState();
     }
 
 
