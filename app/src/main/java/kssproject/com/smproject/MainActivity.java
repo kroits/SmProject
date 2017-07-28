@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -16,6 +17,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import kssproject.com.smproject.DataPackage.DateToday;
+import kssproject.com.smproject.FireBase.ModifyDb;
 import kssproject.com.smproject.FireBase.SelectDb;
 import kssproject.com.smproject.FireBase.StoreDb;
 import kssproject.com.smproject.MidStore.StoreData;
@@ -33,12 +36,13 @@ public class MainActivity extends AppCompatActivity {
 
     private Button button;
     private Button button2;
+    private EditText testText;
     private String TAG = "kss";
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
     private DatabaseReference userRef = null;
     private SharedPreferences sp;
-
+    private DateToday mDateToday =DateToday.getInstance();
 
 
     //// TODO: 2017-07-25  graph
@@ -55,59 +59,9 @@ public class MainActivity extends AppCompatActivity {
         sp = getSharedPreferences("profile",MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
 
-        //Profile check
-
         StoreDb.getInstance().DataSave(key,0.0,0);
 
-
-//        if(getSettingItem(getApplicationContext(),"Name") ==null){
-//            Intent intentProfile = new Intent(MainActivity.this, ProfileActivity.class);
-//            startActivity(intentProfile);
-//        }
-
-        // UserKey check
-
-//        while(key == null) {
-//            if ((sp.getString("UserKey", null)) == null) {
-//                editor.putString("UserKey", databaseReference.push().getKey());
-//                editor.commit();
-//            }
-//            this.key = sp.getString("UserKey", null);
-//        }
-//        if (getSettingItem(getApplicationContext(), "UserKey") == null) {
-//            saveSettingItem(getApplicationContext(), "UserKey", databaseReference.push().getKey());
-//        }
-//        this.key = getSettingItem(getApplicationContext(),"UserKey");
-
-//        if(key == null){
-//            key = databaseReference.push().getKey();
-//            editor.putString("UserKey",key);
-//        }
-
-//        if(StoreData.getInstance().getDate().size() == 0) {
-//            Intent intentWait = new Intent(MainActivity.this, WaitActivity.class);
-//            intentWait.putExtra("UserKey", key);
-//            startActivity(intentWait);
-//            finish();
-//            try {
-//                Thread.sleep(1000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
-
-        // read data from Db by UserKey
-
-//        SelectDb.getInstance().SelectData(SharedPreferences.getSettingItem(getApplicationContext(),"UserKey"));
-
-
-
-//        SharedPreferences.removeSettingAll(getApplicationContext(),"Name");
         initView();
-
-
-//        java.util.Locale.getDefault();
-//        StoreDb.getInstance().DataSave(SharedPreferences.getSettingItem(getApplicationContext(),"UserKey"),54.4,0);
 
     }
 
@@ -115,10 +69,8 @@ public class MainActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.button2);
         button2 = (Button)findViewById(R.id.buttonBurn);
         chartTop = (LineChartView) findViewById(R.id.chart_top);
-//        final String key = sp.getString("UserKey",null);
-//        final String key = getSettingItem(getApplicationContext(),"UserKey");
+        testText = (EditText)findViewById(R.id.editText);
 
-//        final String key = "-KoQoU042cLbBzLVTXlH";
         if(key !=null) {
             databaseReference.child(key).child("information").addValueEventListener(new ValueEventListener() {
                 @Override
@@ -136,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ModifyDb.getInstance().CalorieModify(key,mDateToday.getStrDate(),Integer.parseInt(testText.getText().toString()));
                 Intent intentdata = new Intent(MainActivity.this, DataActivity.class);
                 startActivity(intentdata);
             }
@@ -157,14 +110,15 @@ public class MainActivity extends AppCompatActivity {
     private void generateInitialLineData() {
         StoreData storeData = StoreData.getInstance();
         int numValues = 0;
-        if (storeData.getDate().size() > 7) {
-            numValues = storeData.getDate().size() - 7;
+
+        if (storeData.getWeight().size() > 7) {
+            numValues = storeData.getWeight().size() - 7;
         } else {
         }
 
         List<AxisValue> axisValues = new ArrayList<AxisValue>();
         List<PointValue> values = new ArrayList<PointValue>();
-        for (int i = 0, j = numValues; j < storeData.getDate().size(); ++i, j++) {
+        for (int i = 0, j = numValues; j < storeData.getWeight().size(); ++i, j++) {
             values.add(new PointValue(i, storeData.getCalorie().get(j)));
             axisValues.add(new AxisValue(i).setLabel(storeData.getDate().get(j).substring(5)));
         }
@@ -190,6 +144,8 @@ public class MainActivity extends AppCompatActivity {
 
         chartTop.setMaximumViewport(calorieView);
         chartTop.setCurrentViewport(calorieView);
+
+
 
     }
 }

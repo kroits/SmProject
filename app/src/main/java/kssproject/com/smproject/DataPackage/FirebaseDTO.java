@@ -5,24 +5,14 @@ package kssproject.com.smproject.DataPackage;
  */
 
 public class FirebaseDTO {
-    private long date;
     private double weight;
     private int calorie;
 
     public FirebaseDTO(){}
 
-    public FirebaseDTO(long date, double weight, int calorie){
-        this.date = date;
+    public FirebaseDTO(double weight, int calorie){
         this.weight = weight;
         this.calorie = calorie;
-    }
-
-    public long getDate() {
-        return date;
-    }
-
-    public void setDate(long date) {
-        this.date = date;
     }
 
     public double getWeight() {

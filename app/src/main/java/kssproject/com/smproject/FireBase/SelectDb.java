@@ -30,44 +30,10 @@ public class SelectDb {
 
     public static SelectDb getInstance(){return mSelectDb;}
 
-    public void SelectSevenData(String key){
-        FirebaseDTO firebaseDTO = new FirebaseDTO();
-        databaseReference.child(key).child("information").orderByChild("date").limitToLast(7).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
-                StoreData sd = StoreData.getInstance();
-                Long calorie;
-                Double weight;
-                String date;
-                CustomClass mCustomClass = new CustomClass();
-                sd.dataClear();
-                while(items.hasNext()){
-                    DataSnapshot item = items.next();
-
-                    calorie = (Long)item.child("calorie").getValue();
-                    sd.getCalorie().add(calorie);
-                    mCustomClass.setValue(item.child("weight").getValue());
-                    weight = mCustomClass.getValue();
-                    sd.getWeight().add(weight);
-                    date = (String)item.getKey();
-                    sd.getDate().add(date);
-
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-    }
     public void SelectData(String key){
         FirebaseDTO firebaseDTO = new FirebaseDTO();
 
-//        databaseReference.child(key).child("information").orderByChild("date").limitToLast(3).addValueEventListener(new ValueEventListener()   뒤에서 3개의 value값만 가져오기
-        databaseReference.child(key).child("information").orderByChild("date").addValueEventListener(new ValueEventListener() {
+        databaseReference.child(key).child("information").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
@@ -89,17 +55,6 @@ public class SelectDb {
                     sd.getDate().add(date);
 
                 }
-
-//                TreeMap<String, Object> map2 = (TreeMap) dataSnapshot.getValue();
-//                HashMap<String, Object> map = (HashMap) dataSnapshot.getValue();
-//
-//                for( String key : map.keySet()){
-//                    Long calorie = (Long)((HashMap)map.get(key)).get("calorie");
-//                    Object weight =  ((HashMap)map.get(key)).get("weight");
-//                    sd.getDate().add(key);
-//                    sd.getCalorie().add(calorie);
-//                    sd.getWeight().add(weight);
-//                }
 
             }
 

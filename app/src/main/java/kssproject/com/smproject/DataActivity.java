@@ -115,7 +115,6 @@ public class DataActivity extends AppCompatActivity {
         Line line = new Line(values);
         line.setColor(ChartUtils.COLOR_BLUE).setCubic(false);
 
-
         line.setHasLabels(true);  // 그래프 y값 표시
 
         List<Line> lines = new ArrayList<Line>();
@@ -146,6 +145,5 @@ public class DataActivity extends AppCompatActivity {
         chart.setScrollEnabled(true);
         chart.setZoomEnabled(false);
     }
-
 
 }

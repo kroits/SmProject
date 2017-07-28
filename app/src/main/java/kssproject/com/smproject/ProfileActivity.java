@@ -13,8 +13,6 @@ import android.widget.EditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.Date;
-
 import kssproject.com.smproject.DataPackage.FirebaseDTO;
 import kssproject.com.smproject.FireBase.StoreDb;
 
@@ -85,7 +83,7 @@ public class ProfileActivity extends AppCompatActivity{
                 editor.putFloat("GoalWeight", Float.parseFloat(goalWeightText.getText().toString()));
                 editor.putString("Sex",sex);
                 editor.putString("UserKey",key = databaseReference.push().getKey());
-                FirebaseDTO firebaseDTO = new FirebaseDTO(new Date().getTime(),0.0,0);
+                FirebaseDTO firebaseDTO = new FirebaseDTO(0.0,0);
                 StoreDb.getInstance().DataSave(key,0,0);
                 editor.commit();
 

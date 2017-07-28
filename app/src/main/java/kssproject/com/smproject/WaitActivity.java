@@ -32,7 +32,6 @@ public class WaitActivity extends AppCompatActivity {
         }
             loadData();
 
-
     }
 
     private void loadData() {
