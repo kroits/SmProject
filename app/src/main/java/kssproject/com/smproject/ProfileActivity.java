@@ -1,6 +1,7 @@
 package kssproject.com.smproject;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -9,8 +10,13 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 
-import static kssproject.com.smproject.SharedPreferences.*;
-import static kssproject.com.smproject.SharedPreferences.saveSettingintItem;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Date;
+
+import kssproject.com.smproject.DataPackage.FirebaseDTO;
+import kssproject.com.smproject.FireBase.StoreDb;
 
 /**
  * Created by b3216 on 2017-05-28.
@@ -23,14 +29,22 @@ public class ProfileActivity extends AppCompatActivity{
     private Button nextButton;
     private CheckBox checkMale,checkFemale;
     private String sex;
+    private SharedPreferences sp;
+    private FirebaseDatabase firebasedatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = firebasedatabase.getReference();
+    private String key;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        final Intent postIntent = getIntent();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.enroll_layout);
+
+        sp = getSharedPreferences("profile",MODE_PRIVATE);
+
+
+        Intent sintent = getIntent();
         nextButton = (Button)findViewById(R.id.nextButton);
-        Intent intent=new Intent(this.getIntent());
+
+
 
         nameText = (EditText)findViewById(R.id.editName);
         checkMale = (CheckBox)findViewById(R.id.checkMale);
@@ -63,16 +77,28 @@ public class ProfileActivity extends AppCompatActivity{
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveSettingItem(getApplicationContext(), "Name", nameText.getText().toString());
-                saveSettingintItem(getApplicationContext(), "Age", Integer.parseInt(ageText.getText().toString()));
-                saveSettingfloatItem(getApplicationContext(), "Height", Float.parseFloat(heightText.getText().toString()));
-                saveSettingfloatItem(getApplicationContext(), "Weight", Float.parseFloat(weightText.getText().toString()));
-                saveSettingfloatItem(getApplicationContext(), "GoalWeight", Float.parseFloat(goalWeightText.getText().toString()));
-                saveSettingItem(getApplicationContext(),"Sex",sex);
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putString("Name", nameText.getText().toString());
+                editor.putInt("Age", Integer.parseInt(ageText.getText().toString()));
+                editor.putFloat("Height", Float.parseFloat(heightText.getText().toString()));
+                editor.putFloat("Weight", Float.parseFloat(weightText.getText().toString()));
+                editor.putFloat("GoalWeight", Float.parseFloat(goalWeightText.getText().toString()));
+                editor.putString("Sex",sex);
+                editor.putString("UserKey",key = databaseReference.push().getKey());
+                FirebaseDTO firebaseDTO = new FirebaseDTO(new Date().getTime(),0.0,0);
+                StoreDb.getInstance().DataSave(key,0,0);
+                editor.commit();
 
-                Intent intent1 = new Intent(ProfileActivity.this,MainActivity.class);
+//                saveSettingItem(getApplicationContext(), "Name", nameText.getText().toString());
+//                saveSettingintItem(getApplicationContext(), "Age", Integer.parseInt(ageText.getText().toString()));
+//                saveSettingfloatItem(getApplicationContext(), "Height", Float.parseFloat(heightText.getText().toString()));
+//                saveSettingfloatItem(getApplicationContext(), "Weight", Float.parseFloat(weightText.getText().toString()));
+//                saveSettingfloatItem(getApplicationContext(), "GoalWeight", Float.parseFloat(goalWeightText.getText().toString()));
+//                saveSettingItem(getApplicationContext(),"Sex",sex);
 
-                startActivity(postIntent);
+                Intent intent1 = new Intent(ProfileActivity.this,WaitActivity.class);
+                startActivity(intent1);
+                finish();
             }
         });
 

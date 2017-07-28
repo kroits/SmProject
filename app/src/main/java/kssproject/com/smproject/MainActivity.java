@@ -1,21 +1,23 @@
 package kssproject.com.smproject;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import kssproject.com.smproject.FireBase.SelectDb;
+import kssproject.com.smproject.FireBase.StoreDb;
 import kssproject.com.smproject.MidStore.StoreData;
 import lecho.lib.hellocharts.model.Axis;
 import lecho.lib.hellocharts.model.AxisValue;
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
     private DatabaseReference userRef = null;
+    private SharedPreferences sp;
 
 
 
@@ -44,31 +47,54 @@ public class MainActivity extends AppCompatActivity {
     private LineChartData lineData;
     private String key;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        key = getIntent().getStringExtra("UserKey");
+        sp = getSharedPreferences("profile",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
 
         //Profile check
 
-        if(SharedPreferences.getSettingItem(getApplicationContext(),"Name") ==null){
-            Intent intentProfile = new Intent(MainActivity.this, ProfileActivity.class);
-            startActivity(intentProfile);
-        }
+        StoreDb.getInstance().DataSave(key,0.0,0);
+
+
+//        if(getSettingItem(getApplicationContext(),"Name") ==null){
+//            Intent intentProfile = new Intent(MainActivity.this, ProfileActivity.class);
+//            startActivity(intentProfile);
+//        }
 
         // UserKey check
-        if (SharedPreferences.getSettingItem(getApplicationContext(), "UserKey") == null) {
-            SharedPreferences.saveSettingItem(getApplicationContext(), "UserKey", databaseReference.push().getKey());
-        }
-        this.key = SharedPreferences.getSettingItem(getApplicationContext(),"UserKey");
 
-        if(StoreData.getInstance().getDate().size() == 0) {
-            Intent intentWait = new Intent(MainActivity.this, WaitActivity.class);
-            intentWait.putExtra("UserKey", key);
-            startActivity(intentWait);
-            finish();
-        }
+//        while(key == null) {
+//            if ((sp.getString("UserKey", null)) == null) {
+//                editor.putString("UserKey", databaseReference.push().getKey());
+//                editor.commit();
+//            }
+//            this.key = sp.getString("UserKey", null);
+//        }
+//        if (getSettingItem(getApplicationContext(), "UserKey") == null) {
+//            saveSettingItem(getApplicationContext(), "UserKey", databaseReference.push().getKey());
+//        }
+//        this.key = getSettingItem(getApplicationContext(),"UserKey");
+
+//        if(key == null){
+//            key = databaseReference.push().getKey();
+//            editor.putString("UserKey",key);
+//        }
+
+//        if(StoreData.getInstance().getDate().size() == 0) {
+//            Intent intentWait = new Intent(MainActivity.this, WaitActivity.class);
+//            intentWait.putExtra("UserKey", key);
+//            startActivity(intentWait);
+//            finish();
+//            try {
+//                Thread.sleep(1000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
 
         // read data from Db by UserKey
 
@@ -78,49 +104,35 @@ public class MainActivity extends AppCompatActivity {
 
 //        SharedPreferences.removeSettingAll(getApplicationContext(),"Name");
         initView();
-//        generateInitialLineData();
+
 
 //        java.util.Locale.getDefault();
-//        StoreDb.getInstatce().DataSave(SharedPreferences.getSettingItem(getApplicationContext(),"UserKey"),54.4,0);
+//        StoreDb.getInstance().DataSave(SharedPreferences.getSettingItem(getApplicationContext(),"UserKey"),54.4,0);
 
     }
 
     void initView() {
         button = (Button) findViewById(R.id.button2);
+        button2 = (Button)findViewById(R.id.buttonBurn);
         chartTop = (LineChartView) findViewById(R.id.chart_top);
-        final String key = SharedPreferences.getSettingItem(getApplicationContext(),"UserKey");
+//        final String key = sp.getString("UserKey",null);
+//        final String key = getSettingItem(getApplicationContext(),"UserKey");
 
-        databaseReference.child(key).child("information").addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                SelectDb.getInstance().SelectData(key);
-                generateInitialLineData();
-            }
+//        final String key = "-KoQoU042cLbBzLVTXlH";
+        if(key !=null) {
+            databaseReference.child(key).child("information").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    SelectDb.getInstance().SelectData(key);
+                    generateInitialLineData();
+                }
 
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                SelectDb.getInstance().SelectData(key);
-                generateInitialLineData();
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                SelectDb.getInstance().SelectData(key);
-                generateInitialLineData();
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
+                }
+            });
+        }
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,6 +141,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = sp.edit();
+                editor.clear();
+                editor.apply();
+//                removeSettingAll(getApplicationContext(),"Name");
+            }
+        });
 
     }
 
@@ -139,7 +160,6 @@ public class MainActivity extends AppCompatActivity {
         if (storeData.getDate().size() > 7) {
             numValues = storeData.getDate().size() - 7;
         } else {
-            numValues = storeData.getDate().size();
         }
 
         List<AxisValue> axisValues = new ArrayList<AxisValue>();
@@ -150,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Line line = new Line(values);
-        line.setColor(ChartUtils.COLOR_ORANGE).setCubic(true);
+        line.setColor(ChartUtils.COLOR_ORANGE).setCubic(false);
 
 
         line.setHasLabels(true);  // 그래프 y값 표시
@@ -158,22 +178,18 @@ public class MainActivity extends AppCompatActivity {
         List<Line> lines = new ArrayList<Line>();
         line.setStrokeWidth(3);
         lines.add(line);
-
         lineData = new LineChartData(lines);
         lineData.setAxisXBottom(new Axis(axisValues).setHasLines(true));
-        lineData.setAxisYLeft(new Axis().setName("Cal [kcal]").setHasLines(true).setMaxLabelChars(5));
+        lineData.setAxisYLeft(new Axis().setName("Cal [kcal]").setHasLines(true).setMaxLabelChars(4));
 
         chartTop.setLineChartData(lineData);
 
-        Viewport testv = chartTop.getMaximumViewport();
-        testv.set(testv.left, testv.top, testv.right + 1, 0);
-        Viewport v = new Viewport(0, 3000, 7, 0);
+        Viewport calorieView = chartTop.getMaximumViewport();
+        calorieView.set(calorieView.left, calorieView.top, calorieView.right + 1, 0);
+        calorieView.top = calorieView.top+400;
 
-        testv.top = testv.top+400;
-        testv.bottom = testv.bottom-190;
-
-        chartTop.setMaximumViewport(testv);
-        chartTop.setCurrentViewport(testv);
+        chartTop.setMaximumViewport(calorieView);
+        chartTop.setCurrentViewport(calorieView);
 
     }
 }

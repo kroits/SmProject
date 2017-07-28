@@ -31,7 +31,6 @@ public class DataActivity extends AppCompatActivity {
 
         initview();
 
-
     }
 
     private void initview() {
@@ -53,13 +52,9 @@ public class DataActivity extends AppCompatActivity {
             }
         });
 
-
-
     }
 
     private void generateWeightGraph() {
-
-
 
         List<AxisValue> axisValues = new ArrayList<AxisValue>();
         List<PointValue> values = new ArrayList<PointValue>();
@@ -69,7 +64,7 @@ public class DataActivity extends AppCompatActivity {
         }
 
         Line line = new Line(values);
-        line.setColor(ChartUtils.COLOR_ORANGE).setCubic(true);
+        line.setColor(ChartUtils.COLOR_ORANGE).setCubic(false);
 
 
         line.setHasLabels(true);  // 그래프 y값 표시
@@ -80,28 +75,29 @@ public class DataActivity extends AppCompatActivity {
 
         lineData = new LineChartData(lines);
         lineData.setAxisXBottom(new Axis(axisValues).setHasLines(true));
-        lineData.setAxisYLeft(new Axis().setName("weight [kg]").setHasLines(true).setMaxLabelChars(5));
+        lineData.setAxisYLeft(new Axis().setName("weight [kg]").setHasLines(true).setMaxLabelChars(3));
 
         chart.setLineChartData(lineData);
 
-        Viewport testv1 = chart.getMaximumViewport();
-        testv1.top=testv1.top+5;
-        testv1.bottom = testv1.bottom-3;
-//        testv.set(testv.left,testv.top,testv.right+1,testv.bottom);
-        Viewport v1 = new Viewport(chart.getMaximumViewport());
+        Viewport weightMaxView = chart.getMaximumViewport();
+
+
+        if(weightMaxView.top>15)
+            weightMaxView.top=weightMaxView.top+5;
+        else
+            weightMaxView.top = weightMaxView.top+20;
+
+        if(weightMaxView.right <7)
+            weightMaxView.right = weightMaxView.right+1;
+
+        Viewport weightCurrentView = new Viewport(chart.getMaximumViewport());
+
         if(startleft > 0) {
-            v1.left = startleft;
+            weightCurrentView.left = startleft;
         }
 
-
-
-        v1.right=v1.right+1;
-
-
-
-
-        chart.setMaximumViewport(testv1);
-        chart.setCurrentViewport(v1);
+        chart.setMaximumViewport(weightMaxView);
+        chart.setCurrentViewport(weightCurrentView);
         chart.setScrollEnabled(true);
         chart.setZoomEnabled(false);
 
@@ -117,7 +113,7 @@ public class DataActivity extends AppCompatActivity {
         }
 
         Line line = new Line(values);
-        line.setColor(ChartUtils.COLOR_BLUE).setCubic(true);
+        line.setColor(ChartUtils.COLOR_BLUE).setCubic(false);
 
 
         line.setHasLabels(true);  // 그래프 y값 표시
@@ -128,22 +124,25 @@ public class DataActivity extends AppCompatActivity {
 
         lineData = new LineChartData(lines);
         lineData.setAxisXBottom(new Axis(axisValues).setHasLines(true));
-        lineData.setAxisYLeft(new Axis().setName("Cal [kcal]").setHasLines(true).setMaxLabelChars(3));
+        lineData.setAxisYLeft(new Axis().setName("Cal [kcal]").setHasLines(true).setMaxLabelChars(4));
 
         chart.setLineChartData(lineData);
 
-        Viewport testv = chart.getMaximumViewport();
+        Viewport calorieMaxView = chart.getMaximumViewport();
 
-        testv.top = testv.top+550;
-        testv.bottom = testv.bottom - 190;
 
-        testv.right = testv.right+1;
-        Viewport v = new Viewport(chart.getMaximumViewport());
+        calorieMaxView.top = calorieMaxView.top+550;
+        if(calorieMaxView.right <7)
+            calorieMaxView.right = calorieMaxView.right+1;
+
+
+        Viewport calorieCurrentView = new Viewport(chart.getMaximumViewport());
         if(startleft > 0) {
-            v.left = startleft;
+            calorieCurrentView.left = startleft;
         }
-        chart.setMaximumViewport(testv);
-        chart.setCurrentViewport(v);
+
+        chart.setMaximumViewport(calorieMaxView);
+        chart.setCurrentViewport(calorieCurrentView);
         chart.setScrollEnabled(true);
         chart.setZoomEnabled(false);
     }

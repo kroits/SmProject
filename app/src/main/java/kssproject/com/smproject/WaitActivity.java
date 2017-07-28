@@ -1,6 +1,7 @@
 package kssproject.com.smproject;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -9,62 +10,49 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.otto.Bus;
-import com.squareup.otto.Subscribe;
 
-import kssproject.com.smproject.Controller.BusProvider;
-import kssproject.com.smproject.Controller.WaitStart;
 import kssproject.com.smproject.FireBase.SelectDb;
 
 public class WaitActivity extends AppCompatActivity {
-    public static Bus bus;
 
-    public Intent postIntent ;
+    private SharedPreferences sp;
     private String key;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wait);
 
+        sp = getSharedPreferences("profile", MODE_PRIVATE);
+
+        if ((key = sp.getString("UserKey", null)) == null) {
+            Intent intentProfile = new Intent(WaitActivity.this, ProfileActivity.class);
+            startActivity(intentProfile);
+            finish();
+        }
+            loadData();
 
 
-        this.postIntent = getIntent();
-        this.key = postIntent.getStringExtra("UserKey");
-        BusProvider.getInstance().register(this);
-        loadData();
-//        onDestroy();
     }
 
     private void loadData() {
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child(key).child("information").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+            mDatabase.child(key).child("information").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
 
-                WaitStart o = new WaitStart(postIntent);
-                BusProvider.getInstance().post(o);
+                    SelectDb.getInstance().SelectData(key);
+                    Intent intent = new Intent(WaitActivity.this,MainActivity.class);
+                    intent.putExtra("UserKey",key);
+                    startActivity(intent);
+                    finish();
+                }
 
-            }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    @Override
-    protected  void onDestroy(){
-        BusProvider.getInstance().unregister(this);
-        super.onDestroy();
-    }
-    @Subscribe
-    public void nextMethod(WaitStart o) {
-        Intent intent = o.getIntent();
-        SelectDb.getInstance().SelectData(key);
-        Intent maintent = new Intent(WaitActivity.this,MainActivity.class);
-        startActivity(maintent);
-        finish();
+                }
+            });
     }
 
 }

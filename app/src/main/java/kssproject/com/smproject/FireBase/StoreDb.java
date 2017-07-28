@@ -25,7 +25,7 @@ public class StoreDb {
 
     private StoreDb(){}
 
-    public static StoreDb getInstatce(){
+    public static StoreDb getInstance(){
         return mStoreDb;
     }
 
