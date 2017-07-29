@@ -13,6 +13,7 @@ import android.widget.EditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import kssproject.com.smproject.DataPackage.DateToday;
 import kssproject.com.smproject.DataPackage.FirebaseDTO;
 import kssproject.com.smproject.FireBase.StoreDb;
 
@@ -77,11 +78,14 @@ public class ProfileActivity extends AppCompatActivity{
             public void onClick(View v) {
                 SharedPreferences.Editor editor = sp.edit();
                 editor.putString("Name", nameText.getText().toString());
+                editor.putInt("Year",DateToday.getInstance().getDate().getYear());
                 editor.putInt("Age", Integer.parseInt(ageText.getText().toString()));
                 editor.putFloat("Height", Float.parseFloat(heightText.getText().toString()));
                 editor.putFloat("Weight", Float.parseFloat(weightText.getText().toString()));
                 editor.putFloat("GoalWeight", Float.parseFloat(goalWeightText.getText().toString()));
                 editor.putString("Sex",sex);
+                editor.putString("StrDate", DateToday.getInstance().getStrDate());
+                editor.putInt("Calorie",0);
                 editor.putString("UserKey",key = databaseReference.push().getKey());
                 FirebaseDTO firebaseDTO = new FirebaseDTO(0.0,0);
                 StoreDb.getInstance().DataSave(key,0,0);
