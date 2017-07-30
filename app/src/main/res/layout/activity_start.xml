@@ -4,4 +4,12 @@
     android:layout_height="match_parent"
     android:background="@drawable/start">
 
+    <Button
+        android:id="@+id/bnStart"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:text="시작하기"
+        android:layout_marginBottom="152dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

@@ -15,7 +15,6 @@ public class ModifyDb {
     private static FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private static DatabaseReference databaseReference = firebaseDatabase.getReference();
 
-
     private ModifyDb(){}
 
     public static ModifyDb getInstance(){return mModifyDb;}

@@ -1,4 +1,4 @@
-package kssproject.com.smproject.DataPackage;
+package kssproject.com.smproject.utils;
 
 /**
  * Created by b3216 on 2017-07-21.

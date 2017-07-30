@@ -16,7 +16,6 @@ public class StoreDb {
     private static StoreDb mStoreDb = new StoreDb();
     private static FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private static DatabaseReference databaseReference = firebaseDatabase.getReference();
-    private static DatabaseReference userRef = null;
     private  String strDate;
 
     private StoreDb(){}
@@ -38,7 +37,4 @@ public class StoreDb {
         }
     }
 
-    public void setDate(String strDate){
-        this.strDate = strDate;
-    }
 }

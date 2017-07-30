@@ -1,4 +1,4 @@
-package kssproject.com.smproject.DataPackage;
+package kssproject.com.smproject.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
