@@ -13,7 +13,8 @@
         android:layout_marginTop="16dp"
         android:orientation="horizontal"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="16dp">
 
         <RadioButton
             android:id="@+id/caloriebutton"
@@ -32,7 +33,7 @@
     </RadioGroup>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="365dp"
         android:background="@drawable/customborder"
         android:layout_marginRight="8dp"
@@ -44,9 +45,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
         app:layout_constraintHorizontal_bias="0.538"
-        app:layout_constraintVertical_bias="0.16">
+        app:layout_constraintVertical_bias="0.16"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
     <lecho.lib.hellocharts.view.LineChartView
-        android:id="@+id/chart"
+        android:id="@+id/chartCalorie"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -54,6 +60,18 @@
         app:layout_constraintTop_toBottomOf="@+id/radiogroup">
 
     </lecho.lib.hellocharts.view.LineChartView>
+
+            <lecho.lib.hellocharts.view.LineChartView
+                android:id="@+id/chartWeight"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radiogroup">
+
+            </lecho.lib.hellocharts.view.LineChartView>
+
+        </FrameLayout>
 
     </LinearLayout>
 

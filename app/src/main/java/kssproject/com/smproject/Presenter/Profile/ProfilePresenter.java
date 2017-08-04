@@ -9,7 +9,9 @@ public interface ProfilePresenter {
 
     void onConfirm(String name, Integer age, Float height, Float weight, Float goalweight,String sex);
 
+    void start();
     public interface View {
-        void completeRegist(Class MainActivity);
+        void storeData();
+        void startActivity(Class MainActivity);
     }
 }

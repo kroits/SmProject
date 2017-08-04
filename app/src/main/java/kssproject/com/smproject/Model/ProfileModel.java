@@ -6,7 +6,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import kssproject.com.smproject.FireBase.StoreDb;
-import kssproject.com.smproject.View.MainActivity;
 import kssproject.com.smproject.utils.DateToday;
 import kssproject.com.smproject.utils.Key;
 
@@ -32,23 +31,11 @@ public class ProfileModel {
         editor.putString("StrDate",DateToday.getInstance().getStrDate());
         editor.putInt("Calorie",0);
         editor.putString("UserKey",key = databaseReference.push().getKey());
+        Key.getInstance().setKey(key);
         editor.commit();
 
         StoreDb.getInstance().DataSave(key,0f,0);
 
-
-    }
-
-    public Class loadData(SharedPreferences sp) {
-        String key;
-        key = sp.getString("UserKey",null);
-        if(key == null){
-
-        }
-        else{
-            Key.getInstance().setKey(key);
-        }
-        return MainActivity.class;
     }
 
 }

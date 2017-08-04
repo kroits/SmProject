@@ -21,6 +21,7 @@ import kssproject.com.smproject.utils.Key;
 
 public class StartActivity extends AppCompatActivity implements StartPresenter.View{
 
+
     private StartPresenter startPresenter;
     private Button startButton;
     private SharedPreferences sp;

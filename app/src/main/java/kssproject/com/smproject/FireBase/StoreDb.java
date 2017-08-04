@@ -29,10 +29,11 @@ public class StoreDb {
 
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 30; i++) {
             date.setDate(date.getDate() - 1);
             strDate = dateFormat.format(date);
-            FirebaseDTO firebaseDTO = new FirebaseDTO((double)weight, calorie);
+            FirebaseDTO firebaseDTO = new FirebaseDTO((Math.random()*50),(int)(Math.random()*2000));
+
             databaseReference.child(key).child("information").child(strDate.toString()).setValue(firebaseDTO);
         }
     }

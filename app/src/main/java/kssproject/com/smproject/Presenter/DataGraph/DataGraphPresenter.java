@@ -1,7 +1,6 @@
 package kssproject.com.smproject.Presenter.DataGraph;
 
-import lecho.lib.hellocharts.model.Viewport;
-import lecho.lib.hellocharts.view.LineChartView;
+import lecho.lib.hellocharts.model.LineChartData;
 
 /**
  * Created by b3216 on 2017-07-31.
@@ -10,9 +9,13 @@ import lecho.lib.hellocharts.view.LineChartView;
 public interface DataGraphPresenter {
     void setView(DataGraphPresenter.View view);
 
-    void checkChange(String item,LineChartView chart);
+    void initGraph();
 
     public interface View {
-        void graphView(Viewport max,Viewport cur);
+        void calorieGraphView(LineChartData lineData);
+        void weightGraphView(LineChartData lineData);
+        void itemCheck(int item);
     }
+
+
 }

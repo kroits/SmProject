@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 
 import kssproject.com.smproject.Model.ProfileModel;
+import kssproject.com.smproject.View.MainActivity;
 
 /**
  * Created by b3216 on 2017-07-30.
@@ -30,7 +31,12 @@ public class ProfilePresenterImpl implements ProfilePresenter {
     @Override
     public void onConfirm(String name, Integer age, Float height, Float weight, Float goalweight,String sex) {
         profileModel.storeProfile(name, age, height, weight, goalweight,sex,sp);
-        view.completeRegist(profileModel.loadData(sp));
-
+        view.storeData();
     }
+
+    @Override
+    public void start() {
+        view.startActivity(MainActivity.class);
+    }
+
 }

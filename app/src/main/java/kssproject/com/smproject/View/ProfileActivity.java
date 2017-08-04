@@ -97,19 +97,26 @@ public class ProfileActivity extends AppCompatActivity implements ProfilePresent
     }
 
     @Override
-    public void completeRegist(Class mainActivity) {
-        databaseReference.child(Key.getInstance().getKey()).child("information").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                SelectDb.getInstance().SelectData(dataSnapshot);
-            }
+    public void storeData() {
+        if(Key.getInstance().getKey() != null) {
+            databaseReference.child(Key.getInstance().getKey()).child("information").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    SelectDb.getInstance().SelectData(dataSnapshot);
+                    profilePresenter.start();
+                }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
-        Intent mainIntent = new Intent(this,mainActivity);
+                }
+            });
+        }
+    }
+
+    @Override
+    public void startActivity(Class MainActivity) {
+        Intent mainIntent = new Intent(this,MainActivity);
         startActivity(mainIntent);
         finish();
     }
