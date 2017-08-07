@@ -36,7 +36,6 @@
             android:screenOrientation="portrait" />
         <activity android:name=".View.DataGraphActivity" />
         <activity android:name=".View.MainActivity" />
-        <activity android:name=".View.GraphActivity" />
         <activity android:name=".View.PostDataGraphActivity"></activity>
     </application>
 
