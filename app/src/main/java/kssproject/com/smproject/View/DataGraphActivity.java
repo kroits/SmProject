@@ -22,7 +22,7 @@ public class DataGraphActivity extends AppCompatActivity implements DataGraphPre
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_alldata);
+        setContentView(R.layout.activity_recentdata);
 
         dataGraphPresenter = new DataGraphPresenterImpl(this);
         dataGraphPresenter.setView(this);
@@ -54,6 +54,11 @@ public class DataGraphActivity extends AppCompatActivity implements DataGraphPre
             chartCalorie.setVisibility(View.INVISIBLE);
             chartWeight.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public void weightGraphDateSelectView(LineChartData lineData) {
+
     }
 
     @Override

@@ -7,6 +7,7 @@ import java.util.List;
 
 import kssproject.com.smproject.FireBase.SelectDb;
 import kssproject.com.smproject.View.DataGraphActivity;
+import kssproject.com.smproject.View.PostDataGraphActivity;
 import kssproject.com.smproject.utils.StoreData;
 import lecho.lib.hellocharts.model.Axis;
 import lecho.lib.hellocharts.model.AxisValue;
@@ -23,6 +24,10 @@ public class MainModel {
 
     public Class graphAllData(){
         return DataGraphActivity.class;
+    }
+
+    public Class exercieseView(){
+        return PostDataGraphActivity.class;
     }
 
 //    public Class exerciseActivity(){

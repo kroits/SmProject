@@ -13,9 +13,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Date;
+
 import kssproject.com.smproject.Presenter.Main.MainPresenter;
 import kssproject.com.smproject.Presenter.Main.MainPresenterImpl;
 import kssproject.com.smproject.R;
+import kssproject.com.smproject.utils.DateToday;
 import kssproject.com.smproject.utils.Key;
 import lecho.lib.hellocharts.model.LineChartData;
 import lecho.lib.hellocharts.model.Viewport;
@@ -32,7 +35,9 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
-
+// TODO: 2017-08-04 compare date
+    Date date = new Date();
+    String strDate = DateToday.getInstance().getStrDate();
 
     //// TODO: 2017-07-25  graph
 
@@ -51,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
         button2 = (Button)findViewById(R.id.buttonBurn);
         chart = (LineChartView) findViewById(R.id.chart_top);
         testText = (EditText)findViewById(R.id.editText);
-//        mainPresenter.changeGraphData();
+
         databaseReference.child(key).child("information").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -63,36 +68,6 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
 
             }
         });
-//        databaseReference.child(key).child("information").addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//                mainPresenter.changeGraphData();
-////                mainPresenter.changeGraph();
-//            }
-//
-//            @Override
-//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//                mainPresenter.changeGraphData();
-//                mainPresenter.changeGraph();
-//            }
-//
-//            @Override
-//            public void onChildRemoved(DataSnapshot dataSnapshot) {
-//                mainPresenter.changeGraphData();
-//                mainPresenter.changeGraph();
-//            }
-//
-//            @Override
-//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//                mainPresenter.changeGraphData();
-//                mainPresenter.changeGraph();
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,7 +79,8 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                
+                mainPresenter.clickedExercise();
             }
         });
 
@@ -123,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
     }
 
     @Override
-    public void allDataView(Class activity) {
+    public void otherActivity(Class activity) {
         Intent DataIntent = new Intent(this,activity);
         startActivity(DataIntent);
     }

@@ -25,7 +25,7 @@ public class MainPresenterImpl implements MainPresenter{
 
     @Override
     public void clickedAllData() {
-        view.allDataView(mainModel.graphAllData());
+        view.otherActivity(mainModel.graphAllData());
     }
 
     @Override
@@ -40,7 +40,6 @@ public class MainPresenterImpl implements MainPresenter{
     }
 
     @Override
-    public void clickedExercise() {
-
+    public void clickedExercise() { view.otherActivity(mainModel.exercieseView());
     }
 }

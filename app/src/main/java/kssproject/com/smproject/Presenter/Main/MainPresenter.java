@@ -13,6 +13,7 @@ public interface MainPresenter {
 
     void clickedAllData();
 
+
     void changeGraphData(DataSnapshot dataSnapshot);
     void changeGraph();
 
@@ -20,6 +21,6 @@ public interface MainPresenter {
 
     public interface View {
         void graphView(LineChartData lineData);
-        void allDataView(Class activity);
+        void otherActivity(Class activity);
     }
 }

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RadioGroup
+        android:id="@+id/radiogroup"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="16dp">
+
+        <RadioButton
+            android:id="@+id/caloriebutton"
+            android:layout_width="75dp"
+            android:layout_height="60dp"
+            android:checked="true"
+            android:text="칼로리" />
+
+        <RadioButton
+            android:id="@+id/weightbutton"
+            android:layout_width="75dp"
+            android:layout_height="60dp"
+            android:text="몸무게" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="365dp"
+        android:background="@drawable/customborder"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/radiogroup"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintVertical_bias="0.16"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:id="@+id/linearLayout2">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <lecho.lib.hellocharts.view.LineChartView
+                android:id="@+id/chartCalorie"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radiogroup">
+
+            </lecho.lib.hellocharts.view.LineChartView>
+
+            <lecho.lib.hellocharts.view.LineChartView
+                android:id="@+id/chartWeight"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radiogroup">
+
+            </lecho.lib.hellocharts.view.LineChartView>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+
+
+
+    <TextView
+        android:id="@+id/yearView"
+        android:layout_width="54dp"
+        android:layout_height="18dp"
+        android:text=""
+        android:gravity="center"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/monthView"
+        android:layout_marginRight="8dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:id="@+id/monthView"
+        android:layout_width="51dp"
+        android:layout_height="18dp"
+        android:textAlignment="center"
+        android:text=""
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/yearView"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        app:layout_constraintRight_toLeftOf="@+id/viewButton"
+        android:layout_marginRight="19dp" />
+
+    <ImageButton
+        android:id="@+id/yearUpButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/circular_progress_bar"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/yearView"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintVertical_bias="1.0"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="@+id/yearView"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="@+id/yearView" />
+
+    <ImageButton
+        android:id="@+id/yearDownButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/circular_progress_bar"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/yearView"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="@+id/yearView"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="@+id/yearView"
+        app:layout_constraintHorizontal_bias="0.0" />
+     " />
+
+    <ImageButton
+        android:id="@+id/monthUpButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/circular_progress_bar"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/monthView"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintVertical_bias="1.0"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="@+id/monthView"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="@+id/monthView" />
+
+    <ImageButton
+        android:id="@+id/monthDownButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/circular_progress_bar"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/monthView"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="@+id/monthView"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="@+id/monthView" />
+
+    <Button
+        android:id="@+id/viewButton"
+        android:layout_width="76dp"
+        android:layout_height="48dp"
+        android:text="차트보기"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintRight_toLeftOf="@+id/radiogroup"
+        android:layout_marginRight="8dp" />
+</android.support.constraint.ConstraintLayout>
