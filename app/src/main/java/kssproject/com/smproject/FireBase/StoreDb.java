@@ -30,11 +30,12 @@ public class StoreDb {
 
 
         Date date = DateUtil.getInstance().getDate();
-        date.setDate(date.getDate()+1);
+        Date date2 = new Date();
+        date2.setDate(date.getDate()+1);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         for (int i = 0; i <counter; i++) {
-            date.setDate(date.getDate() - 1);
-            strDate = dateFormat.format(date);
+            date2.setDate(date2.getDate() - 1);
+            strDate = dateFormat.format(date2);
             FirebaseDTO firebaseDTO = new FirebaseDTO((Math.random()*50),(int)(Math.random()*2000));
 
             databaseReference.child(key).child("information").child(strDate.toString()).setValue(firebaseDTO);

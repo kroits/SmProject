@@ -76,15 +76,11 @@ public class StartModel {
             Date storeDate = dateFormat.parse(storeStrDate);
             while (true) {
                 if (storeDate.before(nowDate)) {
-                    count++;
-                    storeDate.setDate(storeDate.getDate()+1);
-                }else{
                     if(dateFormat.format(storeDate).equals(DateUtil.getInstance().getStrDate())){
-                        count++;
                         break;
                     }else{
-                        //이전 날짜보다 현재날짜가 더 이전.
-                        break;
+                        count++;
+                        storeDate.setDate(storeDate.getDate()+1);
                     }
                 }
 

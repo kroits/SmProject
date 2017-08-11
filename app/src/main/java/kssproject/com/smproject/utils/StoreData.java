@@ -51,11 +51,12 @@ public class StoreData {
 
     public void storeNoneData(int counter){
         Date date = DateUtil.getInstance().getDate();
+        Date date2 = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        date.setDate(date.getDate()+1);
+        date2.setDate(date.getDate()+1);
         for(int i = 0 ; i < counter-1; i++) {
-            date.setDate(date.getDate()-1);
-            String updateStrDate = dateFormat.format(date);
+            date2.setDate(date2.getDate()-1);
+            String updateStrDate = dateFormat.format(date2);
             this.date.add(updateStrDate);
             this.calorie.add(0L);
             this.weight.add(0D);
