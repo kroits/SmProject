@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
         chart = (LineChartView) findViewById(R.id.chart_top);
         testText = (EditText)findViewById(R.id.editText);
 
+        testText.setFocusable(false);
+
         databaseReference.child(key).child("information").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -83,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
                 mainPresenter.clickedExercise();
             }
         });
+
 
     }
     //// TODO: 2017-07-25  graph

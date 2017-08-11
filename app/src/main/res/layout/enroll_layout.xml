@@ -3,143 +3,248 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="7">
+    android:weightSum="7"
+    android:background="#10A1D1">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal"
         android:layout_weight="2"
         android:weightSum="9">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="7"
-        android:weightSum="5">
-
-        <TextView
-            android:id="@+id/nameText"
-            style="@style/ProfileText"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="이름" />
-
-        <TextView
-            android:id="@+id/ageText"
-            style="@style/ProfileText"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="나이" />
-
-        <TextView
-            android:id="@+id/sexText"
-            style="@style/ProfileText"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="성별" />
-
-        <TextView
-            android:id="@+id/heightText"
-            style="@style/ProfileText"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="키" />
-
-        <TextView
-            android:id="@+id/weightText"
-            style="@style/ProfileText"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="몸무게" />
-
-        <TextView
-            android:id="@+id/goalweightText"
-            style="@style/ProfileText"
-            android:gravity="center"
-            android:text="목표체중"
-            android:layout_height="59dp"
-            android:layout_width="wrap_content"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="1"
-        android:weightSum="5">
-        <EditText
-            android:id="@+id/editName"
-            style="@style/ProfileText"
-            android:ems="10"
-            android:layout_weight="1"
-            android:inputType="textPersonName"
-             />
-
-        <EditText
-            android:id="@+id/editAge"
-            style="@style/ProfileText"
-            android:ems="10"
-            android:layout_weight="1"
-            android:inputType="number"
-             />
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <CheckBox
-                android:id="@+id/checkMale"
-                android:layout_width="110dp"
-                android:layout_height="61dp"
-                android:text="남자" />
+            android:layout_width="111dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="4dp"
+            android:orientation="vertical"
+            android:weightSum="5">
 
-            <CheckBox
-                android:id="@+id/checkFemale"
-                android:layout_width="110dp"
-                android:layout_height="61dp"
-                android:text="여자" />
+            <TextView
+                android:id="@+id/nameText"
+                style="@style/ProfileText"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:height="5dp"
+                android:background="@drawable/text_design"
+                android:gravity="center"
+                android:text="이름" />
+_
+            <TextView
+                android:id="@+id/ageText"
+                style="@style/ProfileText"
+                android:layout_marginTop="4dp"
+                android:layout_width="match_parent"
+                android:background="@drawable/text_design"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="나이" />
+
+            <TextView
+                android:id="@+id/sexText"
+                style="@style/ProfileText"
+                android:layout_marginTop="4dp"
+                android:layout_width="match_parent"
+                android:background="@drawable/text_design"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="성별" />
+
+            <TextView
+                android:id="@+id/heightText"
+                style="@style/ProfileText"
+                android:layout_marginTop="4dp"
+                android:layout_width="match_parent"
+                android:background="@drawable/text_design"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="키" />
+
+            <TextView
+                android:id="@+id/weightText"
+                style="@style/ProfileText"
+                android:layout_marginTop="4dp"
+                android:layout_width="match_parent"
+                android:background="@drawable/text_design"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="몸무게" />
+
+            <TextView
+                android:id="@+id/goalWeightText"
+                style="@style/ProfileText"
+                android:layout_marginTop="4dp"
+                android:layout_width="match_parent"
+                android:background="@drawable/text_design"
+                android:gravity="center"
+                android:text="목표체중"
+                android:layout_height="59dp"
+                />
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/editHeight"
-            style="@style/ProfileText"
-            android:ems="10"
-            android:layout_weight="1"
-            android:inputType="numberDecimal"
-            />
+        <LinearLayout
+            android:layout_width="241dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="5"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
 
-        <EditText
-            android:id="@+id/editWeight"
-            style="@style/ProfileText"
-            android:ems="10"
-            android:layout_weight="1"
-            android:inputType="numberDecimal"
-             />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="4dp"
+                >
 
-        <EditText
-            android:id="@+id/editGoalWeight"
-            style="@style/ProfileText"
-            android:ems="10"
-            android:layout_weight="1"
-            android:inputType="numberDecimal"
-             />
-    </LinearLayout>
+                <EditText
+                    android:id="@+id/editName"
+                    style="@style/ProfileEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="59dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edit_design"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+
+                <ImageButton
+                    android:id="@+id/nameDeleteButton"
+                    android:layout_width="46dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:background="@drawable/blue_x" />
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="4dp">
+                <EditText
+                    android:id="@+id/editAge"
+                    style="@style/ProfileEdit"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/edit_design"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:layout_height="match_parent" />
+                <ImageButton
+                    android:id="@+id/ageDeleteButton"
+                    android:background="@drawable/blue_x"
+                    android:layout_width="46dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"/>
+            </FrameLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                android:background="@drawable/edit_design"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginLeft="4dp"
+                android:weightSum="1">
+
+                <CheckBox
+                    android:id="@+id/checkMale"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:text="남자"
+                    android:layout_weight="0.50" />
+
+                <CheckBox
+                    android:id="@+id/checkFemale"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:text="여자"
+                    android:layout_weight="0.44" />
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="4dp">
+
+                <EditText
+                    android:id="@+id/editHeight"
+                    style="@style/ProfileEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/edit_design"
+                    android:ems="10"
+                    android:inputType="numberDecimal" />
+
+                <ImageButton
+                    android:id="@+id/heightDeleteButton"
+                    android:layout_width="46dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:background="@drawable/blue_x" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="4dp">
+
+                <EditText
+                    android:id="@+id/editWeight"
+                    style="@style/ProfileEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/edit_design"
+                    android:ems="10"
+                    android:inputType="numberDecimal"/>
+                <ImageButton
+                    android:id="@+id/weightDeleteButton"
+                    android:background="@drawable/blue_x"
+                    android:layout_width="46dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp">
+                <EditText
+                    android:id="@+id/editGoalWeight"
+                    style="@style/ProfileEdit"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/edit_design"
+                    android:ems="10"
+                    android:inputType="numberDecimal"
+                    android:layout_height="match_parent" />
+
+                <ImageButton
+                    android:id="@+id/goalWeightDeleteButton"
+                    android:background="@drawable/blue_x"
+                    android:layout_width="46dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"/>
+
+            </FrameLayout>
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="5">
+        android:layout_weight="5"
+        android:weightSum="1">
 
-
-        <Button
+    <Button
             android:id="@+id/nextButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="69dp"
             android:layout_gravity="bottom"
-            android:layout_marginLeft="250dp"
             android:layout_marginBottom="10dp"
-            style="@style/ProfileText"
-            android:text="다음" />
+            android:layout_marginLeft="116dp"
+            android:layout_weight="0.12"
+            android:background="@drawable/metal"
+            android:text="Continue"
+            android:typeface="sans"
+            android:textSize="36sp"/>
     </LinearLayout>
 
 
