@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="kssproject.com.smproject.View.MainActivity_post">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="120dp"
+            android:layout_height="52dp"
+            android:text="저장"
+            android:layout_alignParentTop="true"
+            android:layout_alignEnd="@+id/linearLayout"
+            android:layout_marginTop="53dp" />
+
+        <GridLayout
+            android:id="@+id/gridLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="89dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="38dp"
+            android:columnCount="3"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonBurn"
+                android:layout_width="125dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:text="체지방감소" />
+
+            <Button
+                android:layout_width="125dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:text="심박강화" />
+
+            <Button
+                android:layout_width="125dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:text="자유운동" />
+
+        </GridLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
+            android:background="@drawable/customborder"
+            android:layout_below="@+id/button2"
+            android:layout_centerHorizontal="true">
+
+            <lecho.lib.hellocharts.view.LineChartView
+                android:id="@+id/chart_top"
+                android:layout_width="330dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center_horizontal"
+
+                app:layout_constraintHorizontal_bias="0.511"></lecho.lib.hellocharts.view.LineChartView>
+
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/linearMenu"
+        android:layout_width="260dp"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:choiceMode="singleChoice"
+        android:gravity="start">
+
+        <ListView
+            android:id="@+id/listMenu"
+            android:layout_width="260dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="@android:color/white"
+            android:choiceMode="singleChoice"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp"
+            android:drawSelectorOnTop="false">
+
+        </ListView>
+    </LinearLayout>
+    <!--<ListView-->
+    <!--android:id="@+id/listView"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="287dp"-->
+    <!--android:layout_marginEnd="8dp"-->
+    <!--android:layout_marginLeft="8dp"-->
+    <!--android:layout_marginRight="8dp"-->
+    <!--android:layout_marginStart="8dp"-->
+    <!--android:transcriptMode="alwaysScroll"-->
+    <!--app:layout_constraintBottom_toTopOf="@+id/button2"-->
+    <!--app:layout_constraintHorizontal_bias="1.0"-->
+    <!--app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--app:layout_constraintRight_toRightOf="parent">-->
+
+    <!--</ListView>-->
+
+</RelativeLayout>

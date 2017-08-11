@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import kssproject.com.smproject.DataPackage.FirebaseDTO;
+import kssproject.com.smproject.utils.DateUtil;
 
 /**
  * Created by b3216 on 2017-07-13.
@@ -25,11 +26,13 @@ public class StoreDb {
     }
 
 
-    public  void DataSave(String key , double weight, int calorie ) {
+    public  void DataSave(String key , double weight, int calorie, int counter ) {
 
-        Date date = new Date();
+
+        Date date = DateUtil.getInstance().getDate();
+        date.setDate(date.getDate()+1);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i <counter; i++) {
             date.setDate(date.getDate() - 1);
             strDate = dateFormat.format(date);
             FirebaseDTO firebaseDTO = new FirebaseDTO((Math.random()*50),(int)(Math.random()*2000));

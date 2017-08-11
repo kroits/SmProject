@@ -6,7 +6,7 @@ import java.util.Date;
 
 import kssproject.com.smproject.Model.PostDataGraphModel;
 import kssproject.com.smproject.R;
-import kssproject.com.smproject.utils.DateToday;
+import kssproject.com.smproject.utils.DateUtil;
 
 /**
  * Created by b3216 on 2017-08-07.
@@ -16,7 +16,7 @@ public class PostDataGraphPresenterImpl implements PostDataGraphPresenter {
     private Activity activity;
     private PostDataGraphPresenter.View view;
     private PostDataGraphModel postDataGraphModel;
-    private Date today = DateToday.getInstance().getDate();
+    private Date today = DateUtil.getInstance().getDate();
     private int year = (today.getYear()+1900);
     private int month = today.getMonth()+1;
 

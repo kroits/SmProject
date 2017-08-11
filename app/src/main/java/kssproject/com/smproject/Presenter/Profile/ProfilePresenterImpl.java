@@ -3,6 +3,7 @@ package kssproject.com.smproject.Presenter.Profile;
 import android.app.Activity;
 import android.content.SharedPreferences;
 
+import kssproject.com.smproject.MidStore.CalorieData;
 import kssproject.com.smproject.Model.ProfileModel;
 import kssproject.com.smproject.View.MainActivity;
 
@@ -36,6 +37,7 @@ public class ProfilePresenterImpl implements ProfilePresenter {
 
     @Override
     public void start() {
+        CalorieData.getInstance().setCalorie(0);
         view.startActivity(MainActivity.class);
     }
 

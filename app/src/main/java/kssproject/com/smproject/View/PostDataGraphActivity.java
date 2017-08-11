@@ -12,7 +12,7 @@ import android.widget.TextView;
 import kssproject.com.smproject.Presenter.DataGraph.PostDataGraphPresenter;
 import kssproject.com.smproject.Presenter.DataGraph.PostDataGraphPresenterImpl;
 import kssproject.com.smproject.R;
-import kssproject.com.smproject.utils.DateToday;
+import kssproject.com.smproject.utils.DateUtil;
 import lecho.lib.hellocharts.model.LineChartData;
 import lecho.lib.hellocharts.model.Viewport;
 import lecho.lib.hellocharts.view.LineChartView;
@@ -25,8 +25,8 @@ public class PostDataGraphActivity extends AppCompatActivity implements PostData
     private ImageButton monthUpButton, monthDownButton;
     private TextView yearView,monthView;
     private Button viewButton;
-    private int yearValue=DateToday.getInstance().getDate().getYear()+1900;
-    private int monthValue=DateToday.getInstance().getDate().getMonth()+1;
+    private int yearValue= DateUtil.getInstance().getDate().getYear()+1900;
+    private int monthValue= DateUtil.getInstance().getDate().getMonth()+1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

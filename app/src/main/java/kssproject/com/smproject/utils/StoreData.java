@@ -1,6 +1,8 @@
 package kssproject.com.smproject.utils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -45,5 +47,18 @@ public class StoreData {
         date.clear();
         weight.clear();
         calorie.clear();
+    }
+
+    public void storeNoneData(int counter){
+        Date date = DateUtil.getInstance().getDate();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        date.setDate(date.getDate()+1);
+        for(int i = 0 ; i < counter-1; i++) {
+            date.setDate(date.getDate()-1);
+            String updateStrDate = dateFormat.format(date);
+            this.date.add(updateStrDate);
+            this.calorie.add(0L);
+            this.weight.add(0D);
+        }
     }
 }

@@ -18,6 +18,7 @@ public class MainPresenterImpl implements MainPresenter{
     public MainPresenterImpl(Activity activity){
         this.activity = activity;
         this.mainModel = new MainModel();
+
     }
 
     @Override
@@ -39,7 +40,13 @@ public class MainPresenterImpl implements MainPresenter{
         view.graphView(mainModel.generateInitialLineData());
     }
 
+
     @Override
     public void clickedExercise() { view.otherActivity(mainModel.exercieseView());
+    }
+
+    @Override
+    public void clickedProfileModify() {
+//        view.otherActivity(mainModel.)
     }
 }

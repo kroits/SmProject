@@ -4,125 +4,125 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="7">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
         android:layout_weight="2"
+        android:orientation="horizontal"
         android:weightSum="9">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="7"
-        android:weightSum="5">
 
-        <TextView
-            android:id="@+id/nameText"
-            style="@style/ProfileText"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="이름" />
-
-        <TextView
-            android:id="@+id/ageText"
-            style="@style/ProfileText"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="나이" />
-
-        <TextView
-            android:id="@+id/sexText"
-            style="@style/ProfileText"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="성별" />
-
-        <TextView
-            android:id="@+id/heightText"
-            style="@style/ProfileText"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="키" />
-
-        <TextView
-            android:id="@+id/weightText"
-            style="@style/ProfileText"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="몸무게" />
-
-        <TextView
-            android:id="@+id/goalweightText"
-            style="@style/ProfileText"
-            android:gravity="center"
-            android:text="목표체중"
-            android:layout_height="59dp"
-            android:layout_width="wrap_content"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="1"
-        android:weightSum="5">
-        <EditText
-            android:id="@+id/editName"
-            style="@style/ProfileText"
-            android:ems="10"
-            android:layout_weight="1"
-            android:inputType="textPersonName"
-             />
-
-        <EditText
-            android:id="@+id/editAge"
-            style="@style/ProfileText"
-            android:ems="10"
-            android:layout_weight="1"
-            android:inputType="number"
-             />
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <CheckBox
-                android:id="@+id/checkMale"
-                android:layout_width="110dp"
-                android:layout_height="61dp"
-                android:text="남자" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
+            android:orientation="vertical"
+            android:weightSum="5">
 
-            <CheckBox
-                android:id="@+id/checkFemale"
-                android:layout_width="110dp"
-                android:layout_height="61dp"
-                android:text="여자" />
+            <TextView
+                android:id="@+id/nameText"
+                style="@style/ProfileText"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="이름" />
+
+            <TextView
+                android:id="@+id/ageText"
+                style="@style/ProfileText"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="나이" />
+
+            <TextView
+                android:id="@+id/sexText"
+                style="@style/ProfileText"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="성별" />
+
+            <TextView
+                android:id="@+id/heightText"
+                style="@style/ProfileText"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="키" />
+
+            <TextView
+                android:id="@+id/weightText"
+                style="@style/ProfileText"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="몸무게" />
+
+            <TextView
+                android:id="@+id/goalweightText"
+                style="@style/ProfileText"
+                android:layout_width="wrap_content"
+                android:layout_height="59dp"
+                android:gravity="center"
+                android:text="목표체중" />
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/editHeight"
-            style="@style/ProfileText"
-            android:ems="10"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:inputType="numberDecimal"
-            />
+            android:orientation="vertical"
+            android:weightSum="5">
 
-        <EditText
-            android:id="@+id/editWeight"
-            style="@style/ProfileText"
-            android:ems="10"
-            android:layout_weight="1"
-            android:inputType="numberDecimal"
-             />
+            <EditText
+                android:id="@+id/editName"
+                style="@style/ProfileText"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName" />
 
-        <EditText
-            android:id="@+id/editGoalWeight"
-            style="@style/ProfileText"
-            android:ems="10"
-            android:layout_weight="1"
-            android:inputType="numberDecimal"
-             />
-    </LinearLayout>
+            <EditText
+                android:id="@+id/editAge"
+                style="@style/ProfileText"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="number" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/checkMale"
+                    android:layout_width="110dp"
+                    android:layout_height="61dp"
+                    android:text="남자" />
+
+                <CheckBox
+                    android:id="@+id/checkFemale"
+                    android:layout_width="110dp"
+                    android:layout_height="61dp"
+                    android:text="여자" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/editHeight"
+                style="@style/ProfileText"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="numberDecimal" />
+
+            <EditText
+                android:id="@+id/editWeight"
+                style="@style/ProfileText"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="numberDecimal" />
+
+            <EditText
+                android:id="@+id/editGoalWeight"
+                style="@style/ProfileText"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="numberDecimal" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -133,12 +133,12 @@
 
         <Button
             android:id="@+id/nextButton"
+            style="@style/ProfileText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:layout_marginLeft="250dp"
             android:layout_marginBottom="10dp"
-            style="@style/ProfileText"
+            android:layout_marginLeft="250dp"
             android:text="다음" />
     </LinearLayout>
 

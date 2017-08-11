@@ -17,8 +17,9 @@ public interface MainPresenter {
     void changeGraphData(DataSnapshot dataSnapshot);
     void changeGraph();
 
-    void clickedExercise();
 
+    void clickedExercise();
+    void clickedProfileModify();
     public interface View {
         void graphView(LineChartData lineData);
         void otherActivity(Class activity);

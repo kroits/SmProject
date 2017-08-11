@@ -6,7 +6,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import kssproject.com.smproject.FireBase.StoreDb;
-import kssproject.com.smproject.utils.DateToday;
+import kssproject.com.smproject.utils.DateUtil;
 import kssproject.com.smproject.utils.Key;
 
 /**
@@ -27,14 +27,14 @@ public class ProfileModel {
         editor.putFloat("Weight",weight);
         editor.putFloat("GoalWeight",goalweight);
         editor.putString("Sex",sex);
-        editor.putInt("Year", DateToday.getInstance().getDate().getYear());
-        editor.putString("StrDate",DateToday.getInstance().getStrDate());
+        editor.putInt("Year", DateUtil.getInstance().getDate().getYear());
+        editor.putString("StrDate", DateUtil.getInstance().getStrDate());
         editor.putInt("Calorie",0);
         editor.putString("UserKey",key = databaseReference.push().getKey());
         Key.getInstance().setKey(key);
         editor.commit();
 
-        StoreDb.getInstance().DataSave(key,0f,0);
+        StoreDb.getInstance().DataSave(key,0f,0,5);
 
     }
 

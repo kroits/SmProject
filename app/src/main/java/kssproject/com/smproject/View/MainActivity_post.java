@@ -3,14 +3,7 @@ package kssproject.com.smproject.View;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -23,7 +16,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Date;
 
-import kssproject.com.smproject.MidStore.CalorieData;
 import kssproject.com.smproject.Presenter.Main.MainPresenter;
 import kssproject.com.smproject.Presenter.Main.MainPresenterImpl;
 import kssproject.com.smproject.R;
@@ -33,8 +25,7 @@ import lecho.lib.hellocharts.model.LineChartData;
 import lecho.lib.hellocharts.model.Viewport;
 import lecho.lib.hellocharts.view.LineChartView;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, MainPresenter.View{
+public class MainActivity_post extends AppCompatActivity implements MainPresenter.View {
 
     private MainPresenter mainPresenter;
 
@@ -48,6 +39,8 @@ public class MainActivity extends AppCompatActivity
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
+
+    // TODO: 2017-08-04 compare date
     Date date = new Date();
     String strDate = DateUtil.getInstance().getStrDate();
 
@@ -56,34 +49,21 @@ public class MainActivity extends AppCompatActivity
     private LineChartView chart;
     private String key = Key.getInstance().getKey();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        mainPresenter = new MainPresenterImpl(MainActivity.this);
-        mainPresenter.setView(MainActivity.this);
+        setContentView(R.layout.activity_main_post);
 
         sp =  getSharedPreferences("profile",MODE_PRIVATE);
 
+        mainPresenter = new MainPresenterImpl(MainActivity_post.this);
+        mainPresenter.setView(MainActivity_post.this);
+
         name = (TextView) findViewById(R.id.tv_name);
         button = (Button) findViewById(R.id.button2);
-        button2 = (Button)findViewById(R.id.buttonBurn);
+        button2 = (Button) findViewById(R.id.buttonBurn);
         modify = (Button) findViewById(R.id.bn_modify);
         chart = (LineChartView) findViewById(R.id.chart_top);
-
 
         name.setText(sp.getString("Name",""));
         sp.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
@@ -92,6 +72,12 @@ public class MainActivity extends AppCompatActivity
                 name.setText(sharedPreferences.getString(key,""));
             }
         });
+
+        String[] values = new String[]{
+                "최근 30일 기록",
+                "이전 기록",
+                "프로필 수정"
+        };
 
 
         databaseReference.child(key).child("information").addValueEventListener(new ValueEventListener() {
@@ -116,26 +102,14 @@ public class MainActivity extends AppCompatActivity
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 운동모드 진입 시 날짜의 변화를 체크.
-                if(DateUtil.getInstance().checkDate()){
 
-                }else{
-                    //날짜가 변경되었을경우 날짜를 새로 저장, calorie저장값을 0으로 변경
-                    DateUtil.getInstance().reSettingDate();
-                    CalorieData.getInstance().setCalorie(0);
-                }
                 mainPresenter.clickedExercise();
             }
         });
 
-        modify.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                mainPresenter.
-            }
-        });
-
     }
+    //// TODO: 2017-07-25  graph
+
 
     @Override
     public void graphView(LineChartData lineData) {
@@ -154,60 +128,12 @@ public class MainActivity extends AppCompatActivity
         startActivity(DataIntent);
     }
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu){
+//        getMenuInflater().inflate(R.menu.menu,menu);
+//        return true;
+//    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_recent) {
-            // Handle the camera action
-        } else if (id == R.id.nav_post) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_creater) {
-
-        } else if (id == R.id.nav_email) {
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
 }

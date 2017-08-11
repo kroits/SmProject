@@ -40,7 +40,6 @@ public class StartActivity extends AppCompatActivity implements StartPresenter.V
 
         startButton = (Button)findViewById(R.id.bnStart);
         startButton.setVisibility(View.INVISIBLE);
-
         startPresenter.checkRegist();
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +67,7 @@ public class StartActivity extends AppCompatActivity implements StartPresenter.V
 
     @Override
     public void loadData() {
-        int i = 0;
+
         databaseReference.child(Key.getInstance().getKey()).child("information").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
