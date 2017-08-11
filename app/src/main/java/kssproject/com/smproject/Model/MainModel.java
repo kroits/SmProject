@@ -30,6 +30,8 @@ public class MainModel {
         return PostDataGraphActivity.class;
     }
 
+    public Class graphRecenData() { return DataGraphActivity.class;}
+
 //    public Class profileUpdate(){return Profile}
 //    public Class exerciseActivity(){
 //        return ExerciseActivity.class;
@@ -70,6 +72,7 @@ public class MainModel {
     public void changeGraphData(DataSnapshot dataSnapshot){
         SelectDb.getInstance().SelectData(dataSnapshot);
     }
+
 
 
 }

@@ -30,6 +30,9 @@ public class MainPresenterImpl implements MainPresenter{
     }
 
     @Override
+    public void clickedRecentData(){view.otherActivity(mainModel.graphRecenData());}
+
+    @Override
     public void changeGraphData(DataSnapshot dataSnapshot) {
         mainModel.changeGraphData(dataSnapshot);
         changeGraph();

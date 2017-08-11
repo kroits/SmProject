@@ -12,6 +12,7 @@ public interface MainPresenter {
     void setView(MainPresenter.View view);
 
     void clickedAllData();
+    void clickedRecentData();
 
 
     void changeGraphData(DataSnapshot dataSnapshot);

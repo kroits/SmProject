@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity
     private Button modify;
     private TextView name;
     private SharedPreferences sp;
+    public String ab;
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
@@ -73,15 +74,17 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
         mainPresenter = new MainPresenterImpl(MainActivity.this);
         mainPresenter.setView(MainActivity.this);
 
         sp =  getSharedPreferences("profile",MODE_PRIVATE);
 
-        name = (TextView) findViewById(R.id.tv_name);
+
+        name = (TextView) navigationView.getHeaderView(0).findViewById(R.id.tv_name);
         button = (Button) findViewById(R.id.button2);
         button2 = (Button)findViewById(R.id.buttonBurn);
-        modify = (Button) findViewById(R.id.bn_modify);
+        modify = (Button) navigationView.getHeaderView(0).findViewById(R.id.bn_modify);
         chart = (LineChartView) findViewById(R.id.chart_top);
 
 
@@ -193,21 +196,13 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_recent) {
-            // Handle the camera action
+            mainPresenter.clickedRecentData();
         } else if (id == R.id.nav_post) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_creater) {
-
-        } else if (id == R.id.nav_email) {
-
+            mainPresenter.clickedAllData();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-        return true;
+        return false;
     }
 }
