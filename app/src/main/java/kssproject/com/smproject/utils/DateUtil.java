@@ -38,7 +38,7 @@ public class DateUtil {
     public boolean checkDate(){
         Date checkDate = new Date();
         String checkStrDate = dateFormat.format(checkDate);
-        return (checkStrDate == strDate);
+        return (checkStrDate.equals(strDate));
     }
 
     // 앱을 실행할때 저장한 날짜를 현재의 날짜로 변경.
